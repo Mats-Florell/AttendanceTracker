@@ -4,6 +4,7 @@ import time
 import face_recognition
 import datetime
 import os
+import json
 
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 # Read the input image
@@ -84,9 +85,8 @@ while True:
         
         
         file = open("Attendance.txt","a")
-        for p in range(len(StudentsAttended)):
-            file.write("\n" + StudentsAttended[p] + ": " + str(date) + " <br> ")
-            p+=1
+        JsonStudent=json.dumps(StudentsAttended)
+        file.write(JsonStudent)
         file.close()
         print("people detected")
         
